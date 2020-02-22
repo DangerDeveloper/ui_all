@@ -26,3 +26,11 @@ const activeGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
+
+
+List<IconData> iconForBtns=[
+  Icons.directions_walk,
+  Icons.donut_small,
+  Icons.track_changes,
+  Icons.tune,
+];

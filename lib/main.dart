@@ -1,5 +1,8 @@
+import 'package:clip_shadow/clip_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_all/styles.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:ui_all/widgets/icon_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,8 +48,25 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               _topNavigationRow(),
               SizedBox(
-                height: 100.0,
-              )
+                height: 120.0,
+              ),
+              Stack(
+                alignment: Alignment.topCenter,
+                overflow: Overflow.visible,
+                children: <Widget>[
+                  _buildMainCard(),
+                  Positioned(
+                    top: -170.0,
+                    child: Image(
+                      height: 320.0,
+                      image: AssetImage('assets/one_plus.png'),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),
@@ -118,7 +138,11 @@ Widget _buildBottomNavigationButton() {
               ),
             ),
           ),
-          Flexible(flex: 3, fit: FlexFit.tight, child: _preOrderButton()),
+          Flexible(
+            flex: 3,
+            fit: FlexFit.tight,
+            child: _preOrderButton(),
+          ),
         ],
       ),
     ),
@@ -139,5 +163,111 @@ Widget _preOrderButton() {
         ),
       ],
     ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'Pre-Order',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
+        VerticalDivider(
+          color: Colors.red,
+        ),
+        Icon(
+          Icons.arrow_forward,
+          color: Colors.white,
+          size: 32.0,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _buildMainCard() {
+  return ClipShadow(
+    boxShadow: softUiShadow,
+    clipper: RoundedDiagonalPathClipper(),
+    child: Container(
+      padding: EdgeInsets.all(16.0),
+      height: 470.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(36.0),
+        color: Color(0xffcddeec),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topRight,
+            child: _buildRoundedIconButton(Icons.favorite),
+          ),
+          _buildMainCardBottomDescription(),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildMainCardBottomDescription() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//        children: <Widget>[
+//          CustomIconButton(
+//            iconName: Icons.directions_walk,
+//          ),
+//        ],
+        children: iconForBtns.map((item) {
+          return CustomIconButton(
+            iconName: item,
+          );
+        }).toList(),
+      ),
+      SizedBox(
+        height: 10.0,
+      ),
+      Text(
+        'NASA x ANICORN',
+        style: TextStyle(
+          fontSize: 42.0,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFF353151),
+        ),
+      ),
+      SizedBox(
+        height: 8.0,
+      ),
+      Text(
+        'Luner Sample Return LE',
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w400,
+          color: Color(0xFF353151),
+          wordSpacing: 4.0,
+        ),
+      ),
+      SizedBox(
+        height: 8.0,
+      ),
+      Text(
+        'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum....',
+        style: TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+          color: Colors.black,
+        ),
+      ),
+      SizedBox(
+        height: 10.0,
+      ),
+    ],
   );
 }
