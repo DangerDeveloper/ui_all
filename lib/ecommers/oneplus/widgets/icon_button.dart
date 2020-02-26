@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_all/styles.dart';
+import 'package:ui_all/ecommers/oneplus/styles.dart';
 
 class CustomIconButton extends StatefulWidget {
   final IconData iconName;
